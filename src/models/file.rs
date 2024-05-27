@@ -1,33 +1,17 @@
-// File class implementation
-
-#[derive(Debug, Clone)]
+/* File Class */
+#[derive(Debug)]
 pub struct File {
-    name: String,
-    content: String,
+    pub name: String, // Name of the file
+    pub content: String, // Content of the file
 }
 
-// Methods for file
+/* File method implementations */
 impl File {
-    // Create a new file
+    // Constructor
     pub fn new(name: &str) -> Self {
-        Self {
+        File {
             name: name.to_string(),
             content: String::new(),
         }
-    }
-
-    // Write to file (append)
-    pub fn append(&mut self, content: &str) {
-        self.content.push_str(content);
-    }
-    
-    pub fn write(&mut self, content: &str) {
-        self.content.clear();
-        self.content.push_str(content);
-    }
-
-    // Read file content
-    pub fn read(&self) -> &str {
-        &self.content
     }
 }
