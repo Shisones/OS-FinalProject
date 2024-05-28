@@ -11,6 +11,7 @@ use controller::{
     dir_control::*,
     fs_control::*
 };
+use colored::Colorize;
 
 // Driver Code
 fn main() {
@@ -34,6 +35,7 @@ fn main() {
     mkdir(&mut fs, "temp");
     mkdir(&mut fs, "usr");
     mkdir(&mut fs, "var");
+    
 
     // Initiate a partition
     let mut secret_partition = FileSystem::new();
@@ -43,19 +45,19 @@ fn main() {
     write(&mut secret_partition, "RahasiaNegara.txt", "Ahmad Taufiq Hidayat Jadi Presiden?!?!?!?!");
 
     println!(r#"
-    ╭──────────────────────────────────────╮
-    │        HatchmakerOS v.0.1.0          │
-    │ Made for Operating System Final Task │
-    │ Copyright :                          │
-    │    - Jason Rafif P.S. (2204524)      │
-    │    - Defrizal Yahdiyan R. (2206131)  │
-    ╰──────────────────────────────────────╯
+           ╭──────────────────────────────────────╮
+           │        HatchmakerOS v.0.1.0          │
+           │ Made for Operating System Final Task │
+           │ Copyright :                          │
+           │    - Jason Rafif P.S. (2204524)      │
+           │    - Defrizal Yahdiyan R. (2206131)  │
+           ╰──────────────────────────────────────╯
     "#
 );
 // Main loop
 while run {
     // Print $PS1 variable and scan user input
-    print("RasimOS $ ");
+    ps1();
     let input = scan();
     
     // Parse user input to command and arguments
@@ -69,73 +71,73 @@ while run {
             "ls" => { ls(&fs)} , // List the contents of current directory
             "cd" => { // Change directory
                 if args.len() == 1 { cd(&mut fs, args[0]); } 
-                else { println!("[!] Usage: cd <directory>"); }
+                else { println!("{}", "[*] Usage: cd <directory>".yellow()); }
             }
             "mkfile" => { // Make a file inside current directory
                 if args.len() == 1 { mkfile(&mut fs, args[0]); }
-                else { println!("[!] Usage: mkfile <filename>"); }
+                else { println!("{}", "[*] Usage: mkfile <filename>".yellow()); }
             }
             "read" => { // Read a file inside current directory
                 if args.len() == 1 { read(&fs, args[0]); }
-                else { println!("[!] Usage: read <filename>"); }
+                else { println!("{}", "[*] Usage: read <filename>".yellow()); }
             }
             "append" => { // Append to a file inside current directory
                 if args.len() >= 2 { append(&mut fs, args[0], &args[1..].join(" ")); }
-                else { println!("[!] Usage: append <filename> <content>"); }
+                else { println!("{}", "[*] Usage: append <filename> <content>".yellow()); }
             }
             "write" => { // Write to a file inside current directory
                 if args.len() >= 2 { write(&mut fs, args[0], &args[1..].join(" ")); }
-                else { println!("[!] Usage: write <filename> <content>"); }
+                else { println!("{}", "[*] Usage: write <filename> <content>".yellow()); }
             }
             "rmfile" => { // Remove a file
                 if args.len() == 1 { rmfile(&mut fs, args[0]); } 
-                else { println!("[!] Usage: rmfile <filename>"); }
+                else { println!("{}", "[*] Usage: rmfile <filename>".yellow()); }
             }
             "mkdir" => { // Make a subdirectory
                 if args.len() == 1 { mkdir(&mut fs, args[0]); } 
-                else { println!("[!] Usage: mkdir <dirname>"); }
+                else { println!("{}", "[*] Usage: mkdir <dirname>".yellow()); }
             }
             "rmdir" => { // Remove a subdirectory
                 if args.len() == 1 { rmdir(&mut fs, args[0]); } 
-                else { println!("[!] Usage: rmdir <dirname>"); }
+                else { println!("{}", "[*] Usage: rmdir <dirname>".yellow()); }
             }
             "cpfile" => {
                 if args.len() == 2 {
                     cpfile(&mut fs, args[0], args[1]);
                 } else {
-                    println!("[!] Usage: cp <file> <newname>");
+                    println!("{}", "[*] Usage: cp <file> <newname>".yellow());
                 }
             }
             "renmfile" => {
                 if args.len() == 2 {
                     renmfile(&mut fs, args[0], args[1]);
                 } else {
-                    println!("[!] Usage: renm <file> <newname>");
+                    println!("{}", "[*] Usage: renm <file> <newname>".yellow());
                 }
             }
             "cpdir" => {
                 if args.len() == 2 {
                     cpdir(&mut fs, args[0], args[1]);
                 } else {
-                    println!("[!] Usage: cpdir <directory> <newname>");
+                    println!("{}", "[*] Usage: cpdir <directory> <newname>".yellow());
                 }
             }
             "renmdir" => {
                 if args.len() == 2 {
                     renmdir(&mut fs, args[0], args[1]);
                 } else {
-                    println!("[!] Usage: renmdir <directory> <newname>");
+                    println!("{}", "[*] Usage: renmdir <directory> <newname>".yellow());
                 }
             }
             "mount" => {
                 if args.len() == 1 {
                     mount(&mut fs, args[0], secret_partition.root.clone());
                 } else {
-                    println!("[!] Usage: mount <mountpoint>");
+                    println!("{}", "[*] Usage: mount <mountpoint>".yellow());
                 }
             }
             "exit" => exit(),
-            _ => println!("[!] Command not found"),
+            _ => println!("{}", "[!] Command not found".red()),
         }
     }
 }

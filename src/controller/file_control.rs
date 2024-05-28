@@ -1,5 +1,6 @@
 use crate::models::filesystem::FileSystem;
 use crate::models::file::File;
+use colored::Colorize;
 
 /* Controller for file  */
 
@@ -15,7 +16,7 @@ pub fn read(fs: &FileSystem, file_name: &str) {
     if let Some(file) = dir.files.get(file_name) {
         println!("{}", file.content);
     } else {
-        println!("[!] File not found");
+        println!("{}", "[!] File not found".red());
     }
 }
 
@@ -25,7 +26,7 @@ pub fn append(fs: &mut FileSystem, file_name: &str, content: &str) {
     if let Some(file) = dir.files.get_mut(file_name) {
         file.content.push_str(content);
     } else {
-        println!("[!] File not found");
+        println!("{}", "[!] File not found".red());
     }
 }
 
@@ -35,7 +36,7 @@ pub fn write(fs: &mut FileSystem, file_name: &str, content: &str) {
     if let Some(file) = dir.files.get_mut(file_name) {
         file.content = content.to_string();
     } else {
-        println!("[!] File not found");
+        println!("{}", "[!] File not found".red());
     }
 }
 
@@ -43,7 +44,22 @@ pub fn write(fs: &mut FileSystem, file_name: &str, content: &str) {
 pub fn rmfile(fs: &mut FileSystem, file_name: &str) {
     let dir = fs.get_current_directory_mut();
     if dir.files.remove(file_name).is_none() {
-        println!("[!] File not found");
+        println!("{}", "[!] File not found".red());
     }
 }
+
+// Copy a file 
+pub fn cpfile(fs: &mut FileSystem, src: &str, dest: &str) {
+    if let Err(err) = fs.copy_file(src, dest) {
+        println!("{}", err.red());
+    }
+}
+
+// Rename a file
+pub fn renmfile(fs: &mut FileSystem, src: &str, dest: &str) {
+    if let Err(err) = fs.rename_file(src, dest) {
+        println!("{}", err.red());
+    }
+}
+
 

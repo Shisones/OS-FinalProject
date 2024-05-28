@@ -1,4 +1,5 @@
 use std::io::*;
+use colored::Colorize;
 
 pub fn scan() -> String {
     // Declare a stdin and return variable
@@ -13,7 +14,7 @@ pub fn scan() -> String {
     return input.trim().to_string(); // Convert &str to String and return
 }
 
-pub fn print(buffer : &str) {
-    print!("{}", buffer);
+pub fn ps1() {
+    print!("{}{}", "Grigori@HatchmakerOS".green(), " $ ".cyan());
     stdout().flush().unwrap();
 }

@@ -1,3 +1,4 @@
+use colored::Colorize;
 use crate::models::{
     filesystem::FileSystem,
     directory::Directory
@@ -12,13 +13,13 @@ pub fn pwd(fs: &FileSystem) {
 pub fn ls(fs: &FileSystem) {
     let dir = fs.get_current_directory();
     for (name, _) in &dir.directories {
-        println!("{} (d)", name);
+        println!("{}", name.blue());
     }
     for (name, _) in &dir.files {
-        println!("{} (f)", name);
+        println!("{}", name);
     }
     for (mount_point, _) in &fs.mounts {
-        println!("{} (m)", mount_point);
+        println!("{}", mount_point.cyan());
     }
 }
 
@@ -33,51 +34,24 @@ pub fn cd(fs: &mut FileSystem, dir_name: &str) {
         if dir.directories.contains_key(dir_name) {
             fs.current_dir.push(dir_name.to_string());
         } else {
-            println!("[!] Directory not found");
+            println!("{}", "[!] Directory not found".red());
         }
     }
 }
 
-// Copy a file 
-pub fn cpfile(fs: &mut FileSystem, src: &str, dest: &str) {
-    if let Err(err) = fs.copy_file(src, dest) {
-        println!("{}", err);
-    }
-}
-
-// Rename a file
-pub fn renmfile(fs: &mut FileSystem, src: &str, dest: &str) {
-    if let Err(err) = fs.rename_file(src, dest) {
-        println!("{}", err);
-    }
-}
-
-// Copy a directory
-pub fn cpdir(fs: &mut FileSystem, src: &str, dest: &str) {
-    if let Err(err) = fs.copy_dir(src, dest) {
-        println!("{}", err);
-    }
-}
-
-// Rename a directory
-pub fn renmdir(fs: &mut FileSystem, src: &str, dest: &str) {
-    if let Err(err) = fs.rename_dir(src, dest) {
-        println!("{}", err);
-    }
-}
-
+// Mount another fs
 pub fn mount(fs: &mut FileSystem, mount_point: &str, fs_to_mount: Directory) {
     let dir = fs.get_current_directory_mut();
     if dir.directories.contains_key(mount_point) {
-        println!("[!] Mount point already exists");
+        println!("{}", "[!] Mount point already exists".red());
     } else {
         dir.directories.insert(mount_point.to_string(), fs_to_mount);
-        println!("[*] Filesystem mounted at {}", mount_point);
+        println!("{} {}", "[*] Filesystem mounted at".yellow(), mount_point.yellow());
     }
 }
 
 // Exit the program
 pub fn exit() {
-    println!("Exiting...");
+    println!("{}", "[*] Exiting...".yellow());
     std::process::exit(0);
 }
