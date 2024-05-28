@@ -4,6 +4,7 @@ This Rust program simulates a basic filesystem environment where users can navig
 
 Written to fulfill the Final Project for Operating System Course, Universitas Pendidikan Indonesia
 under the guidance of Dr. Rasim Hermanto, M.T.
+
 ## Features
 
 - **Navigation**: Users can navigate through directories using commands such as `cd` (change directory) and `ls` (list directory contents).
@@ -14,15 +15,11 @@ under the guidance of Dr. Rasim Hermanto, M.T.
 
 ## Usage
 
-1. **Compile**: Compile the program using the Rust compiler.
+1. **Compile and Run**: Compile the program using the Rust compiler.
    ```
-   $ rustc main.rs
+   $ cargo run
    ```
 
-2. **Run**: Run the compiled program.
-   ```
-   $ ./main
-   ```
 
 3. **Commands**: Use the following commands to interact with the filesystem:
    - `cd <directory>`: Change current directory.
