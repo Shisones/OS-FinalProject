@@ -44,13 +44,5 @@ under the guidance of Dr. Rasim Hermanto, M.T.
 
 ## Authors
 
-- [Jason Rafif P.S.](https://github.com/jasonrafifps)
-- [Defrizal Yahdiyan R.](https://github.com/defrizal)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
---- 
-
-Feel free to customize this README with additional information about your program or any specific instructions for users.
+- [Jason Rafif P.S.] (2204524)
+- [Defrizal Yahdiyan R.] (2206131)
