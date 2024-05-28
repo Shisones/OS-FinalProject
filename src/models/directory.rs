@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use crate::models::file::File;
 
 /* Directory Class */
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Directory {
     pub name: String, // Directory name
     pub files: HashMap<String, File>, // Files inside the directory

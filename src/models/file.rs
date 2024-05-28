@@ -1,5 +1,5 @@
 /* File Class */
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct File {
     pub name: String, // Name of the file
     pub content: String, // Content of the file
