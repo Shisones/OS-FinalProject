@@ -35,7 +35,6 @@ fn main() {
     mkdir(&mut fs, "temp");
     mkdir(&mut fs, "usr");
     mkdir(&mut fs, "var");
-    
 
     // Initiate a partition
     let mut secret_partition = FileSystem::new();
@@ -102,39 +101,24 @@ while run {
                 else { println!("{}", "[*] Usage: rmdir <dirname>".yellow()); }
             }
             "cpfile" => {
-                if args.len() == 2 {
-                    cpfile(&mut fs, args[0], args[1]);
-                } else {
-                    println!("{}", "[*] Usage: cp <file> <newname>".yellow());
-                }
+                if args.len() == 2 { cpfile(&mut fs, args[0], args[1]); }
+                else { println!("{}", "[*] Usage: cp <file> <newname>".yellow()); }
             }
             "renmfile" => {
-                if args.len() == 2 {
-                    renmfile(&mut fs, args[0], args[1]);
-                } else {
-                    println!("{}", "[*] Usage: renm <file> <newname>".yellow());
-                }
+                if args.len() == 2 { renmfile(&mut fs, args[0], args[1]); }
+                else { println!("{}", "[*] Usage: renm <file> <newname>".yellow()); }
             }
             "cpdir" => {
-                if args.len() == 2 {
-                    cpdir(&mut fs, args[0], args[1]);
-                } else {
-                    println!("{}", "[*] Usage: cpdir <directory> <newname>".yellow());
-                }
+                if args.len() == 2 { cpdir(&mut fs, args[0], args[1]); }
+                else { println!("{}", "[*] Usage: cpdir <directory> <newname>".yellow()); }
             }
             "renmdir" => {
-                if args.len() == 2 {
-                    renmdir(&mut fs, args[0], args[1]);
-                } else {
-                    println!("{}", "[*] Usage: renmdir <directory> <newname>".yellow());
-                }
+                if args.len() == 2 { renmdir(&mut fs, args[0], args[1]); }
+                else { println!("{}", "[*] Usage: renmdir <directory> <newname>".yellow()); }
             }
             "mount" => {
-                if args.len() == 1 {
-                    mount(&mut fs, args[0], secret_partition.root.clone());
-                } else {
-                    println!("{}", "[*] Usage: mount <mountpoint>".yellow());
-                }
+                if args.len() == 1 { mount(&mut fs, args[0], secret_partition.root.clone()); }
+                else { println!("{}", "[*] Usage: mount <mountpoint>".yellow()); }
             }
             "exit" => exit(),
             _ => println!("{}", "[!] Command not found".red()),
